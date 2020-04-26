@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jsonPretty/screens/views.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -16,7 +17,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Row(
         children: <Widget>[
-          Container(), //will replace later with required widget
+          Expanded(child: View()), //will replace later with required widget
         ],
       ),
     );
