@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
+import 'dart:html' as html; // For opening links in Web builds
 
 import 'package:flutter/services.dart';
 
@@ -30,6 +31,21 @@ class _ViewState extends State<View> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomSheet: Container(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 15.0, bottom: 15.0),
+          child: MaterialButton(
+            onPressed: () => (html.window.open(
+                "https://github.com/bgrgv/jsonPretty",
+                "Code")), //flutter Web implementation
+            child: Text(
+              "View source code of jsonPretty",
+              style: TextStyle(color: Colors.white, fontSize: 17.0),
+            ),
+            color: Colors.blue,
+          ),
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         elevation: 10.0,
         hoverColor: Colors.blue[900],

@@ -13,6 +13,11 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Colors.blue[900],
         title: Text("jsonPretty-bgrgv"),
+        elevation: 10.0,
+        leading: Icon(
+          Icons.sentiment_very_satisfied,
+          size: 40.0,
+        ),
         // bottom: R,
         centerTitle: true,
       ),
