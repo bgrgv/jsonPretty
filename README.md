@@ -1,4 +1,4 @@
-[![GitHub Follow](https://img.shields.io/github/followers/bgrgv?style=social&logo=github)](https://github.com/bgrgv)
+![GitHub Follow](https://img.shields.io/github/followers/bgrgv?style=social&logo=github)](https://github.com/bgrgv)
 
 # jsonPretty
 #### Flutter-Web application for JSON formatting
@@ -6,13 +6,17 @@
 ### Requirements :
 - Flutter
 - Chrome for hot restart on web
--- Flutter Web is still in beta and isn't production ready yet.
--- Guide to set up Flutter for web : 
-		Make sure that you have Flutter v1.12 or above
+- Flutter Web is still in beta and isn't production ready yet.
+- Guide to set up Flutter for web :
+	
+	Make sure that you have Flutter v1.12 or above
 		Run the follwing commands to enable Flutter web support :
-			` flutter channel beta `
-			` flutter upgrade `
-			` flutter config --enable-web
+
+ - 1.` flutter channel beta ` 
+
+ - 2.` flutter upgrade `
+
+ - 3.` flutter config --enable-web
  `
 
 ### To run locally:
