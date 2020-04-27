@@ -3,6 +3,9 @@
 # jsonPretty
 #### Flutter-Web application for JSON formatting
 
+# [Click to view live version](https://www.blessinspeaks.com/jsonpretty)
+
+
 ### Requirements :
 - Flutter
 - Chrome for hot restart on web
