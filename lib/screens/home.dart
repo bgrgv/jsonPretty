@@ -15,10 +15,12 @@ class _HomePageState extends State<HomePage> {
         title: Text("jsonPretty-bgrgv"),
         centerTitle: true,
       ),
-      body: Row(
-        children: <Widget>[
-          Expanded(child: View()), //will replace later with required widget
-        ],
+      body: SafeArea(
+        child: Row(
+          children: <Widget>[
+            Expanded(child: View()), //will replace later with required widget
+          ],
+        ),
       ),
     );
   }
