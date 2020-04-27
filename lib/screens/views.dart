@@ -7,7 +7,13 @@ class View extends StatefulWidget {
 }
 
 class _ViewState extends State<View> {
-
+  // Takes in the input text as 'text' and formats the JSON
+  void makePrett(String text) {
+    setState(() {
+      prettyPrint = encoder.convert(jsonDecode(text));
+      print(prettyPrint); //Check terminal or console for output
+    });
+  }
 
   TextEditingController inputController = TextEditingController();
   String inputText = "";
@@ -31,7 +37,9 @@ class _ViewState extends State<View> {
             maxLines: 30,
             controller: inputController,
             decoration: InputDecoration(border: OutlineInputBorder()),
-            onChanged: null //TOOD : add function to pass the input text
+            onChanged: (input) {
+              makePrett(input);
+            },
           )),
         ),
         Flexible(
