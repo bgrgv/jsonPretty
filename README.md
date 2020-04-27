@@ -1,4 +1,5 @@
 [![GitHub Follow](https://img.shields.io/github/followers/bgrgv?style=social&logo=github)](https://github.com/bgrgv)
+
 # jsonPretty
 #### Flutter-Web application for JSON formatting
 
