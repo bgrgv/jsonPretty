@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 
+import 'package:flutter/services.dart';
+
 class View extends StatefulWidget {
   @override
   _ViewState createState() => _ViewState();
@@ -12,6 +14,7 @@ class _ViewState extends State<View> {
     //use setState to dynamically update the value of variables that are used to display content
     setState(() {
       prettyPrint = encoder.convert(jsonDecode(text));
+      text = null;
       // print(prettyPrint); //Check terminal or console for output
     });
   }
@@ -26,57 +29,86 @@ class _ViewState extends State<View> {
   }
 
   Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        // Let's create two equally sized columns
-        Flexible(
-          flex: 49,
-          child: SafeArea(
-              child: Container(
-            child: Padding(
-              padding: const EdgeInsets.all(40.0),
-              child: TextField(
-                // The parameters are self explanatory
-                // Check out this Medium post to learn more : https://medium.com/flutter-community/flutter-a-guide-on-textfield-ab62ef2e7654
-                autofocus: true,
-                autocorrect: false,
-                maxLines: 30,
-                controller: inputController,
-                decoration: InputDecoration(
-                    counter: Container(
-                      child: Text(prettyPrint.length.toString()),
-                    ),
-                    prefixIcon: Icon(Icons.code),
-                    border: OutlineInputBorder()),
-                onChanged: (input) {
-                  makePretty(input);
-                },
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        elevation: 10.0,
+        hoverColor: Colors.blue[900],
+        onPressed: () async {
+          prettyPrint.length > 0
+              ? await Clipboard.setData(ClipboardData(text: prettyPrint))
+              : await Clipboard.setData(
+                  ClipboardData(text: "Not a valid/supported JSON input"));
+        },
+        child: Icon(Icons.content_copy),
+      ),
+      body: Row(
+        children: <Widget>[
+          // Let's create two equally sized columns
+          Flexible(
+            flex: 49,
+            child: SafeArea(
+                child: Container(
+              child: Padding(
+                padding: const EdgeInsets.all(40.0),
+                child: TextField(
+                  // The parameters are self explanatory
+                  // Check out this Medium post to learn more : https://medium.com/flutter-community/flutter-a-guide-on-textfield-ab62ef2e7654
+                  enableSuggestions: false,
+                  autocorrect: false,
+                  maxLines: 30,
+                  controller: inputController,
+                  decoration: InputDecoration(
+                      hintMaxLines: 10,
+                      hintText:
+                          ("Hey! 😊\n\nThis is a simple Flutter-Web application.\n\nInput your JSON to see results! You can copy your output using the button\non the bottom right corner."),
+                      hintStyle: TextStyle(
+                        color: Colors.blue[400],
+                        fontSize: 20.0,
+                      ),
+                      counter: Container(
+                        child: Text(prettyPrint.length.toString()),
+                      ),
+                      prefixIcon: Icon(
+                        Icons.code,
+                        color: Colors.blue[700],
+                      ),
+                      border: OutlineInputBorder()),
+                  onChanged: (input) {
+                    makePretty(input);
+                  },
+                ),
               ),
-            ),
-          )),
-        ),
-        Flexible(
-          flex: 1,
-          child: Container(
-            color: Colors.blue[900],
+            )),
           ),
-        ),
-        Flexible(
-          flex: 49,
-          child: SafeArea(
-              //Display the value of 'prettyPrint' in a 'Text' widget. The value of 'prettyPrint' will be updated by 'setState' of function 'makePretty'
-              child: Center(
-            child: Text(
-              prettyPrint,
-              style: TextStyle(
-                  fontSize: 20.0,
-                  letterSpacing: 1.5,
-                  height: 1.5,
-                  color: Colors.blue[900]),
+          Flexible(
+            flex: 1,
+            child: Container(
+              color: Colors.blue[900],
             ),
-          )),
-        )
-      ],
+          ),
+          Flexible(
+            flex: 49,
+            child: SafeArea(
+                bottom: true,
+                //Display the value of 'prettyPrint' in a 'Text' widget. The value of 'prettyPrint' will be updated by 'setState' of function 'makePretty'
+                child: Center(
+                  child: prettyPrint.length > 0
+                      ? Text(
+                          prettyPrint,
+                          style: TextStyle(
+                              fontSize: 20.0,
+                              letterSpacing: 1.5,
+                              height: 1.5,
+                              color: Colors.blue[900]),
+                        )
+                      : Image.asset(
+                          "images/wait.png",
+                          scale: 2.0,
+                        ),
+                )),
+          )
+        ],
+      ),
     );
   }
 }

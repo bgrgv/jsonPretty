@@ -13,6 +13,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Colors.blue[900],
         title: Text("jsonPretty-bgrgv"),
+        // bottom: R,
         centerTitle: true,
       ),
       body: SafeArea(
