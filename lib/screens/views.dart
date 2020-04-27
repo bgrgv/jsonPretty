@@ -54,7 +54,7 @@ class _ViewState extends State<View> {
           prettyPrint.length > 0
               ? await Clipboard.setData(ClipboardData(text: prettyPrint))
               : await Clipboard.setData(ClipboardData(
-                  text: "Not a valid/supported JSON input\n--jsonPrety"));
+                  text: "Not a valid/supported JSON input\n--jsonPretty"));
         },
         child: Icon(Icons.content_copy),
       ),
