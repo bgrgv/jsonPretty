@@ -32,15 +32,27 @@ class _ViewState extends State<View> {
         Flexible(
           flex: 49,
           child: SafeArea(
+              child: Container(
+            child: Padding(
+              padding: const EdgeInsets.all(40.0),
               child: TextField(
-            autofocus: true,
-            autocorrect: false,
-            maxLines: 30,
-            controller: inputController,
-            decoration: InputDecoration(border: OutlineInputBorder()),
-            onChanged: (input) {
-              makePretty(input);
-            },
+                // The parameters are self explanatory
+                // Check out this Medium post to learn more : https://medium.com/flutter-community/flutter-a-guide-on-textfield-ab62ef2e7654
+                autofocus: true,
+                autocorrect: false,
+                maxLines: 30,
+                controller: inputController,
+                decoration: InputDecoration(
+                    counter: Container(
+                      child: Text(prettyPrint.length.toString()),
+                    ),
+                    prefixIcon: Icon(Icons.code),
+                    border: OutlineInputBorder()),
+                onChanged: (input) {
+                  makePretty(input);
+                },
+              ),
+            ),
           )),
         ),
         Flexible(
@@ -54,7 +66,14 @@ class _ViewState extends State<View> {
           child: SafeArea(
               //Display the value of 'prettyPrint' in a 'Text' widget. The value of 'prettyPrint' will be updated by 'setState' of function 'makePretty'
               child: Center(
-            child: Text(prettyPrint),
+            child: Text(
+              prettyPrint,
+              style: TextStyle(
+                  fontSize: 20.0,
+                  letterSpacing: 1.5,
+                  height: 1.5,
+                  color: Colors.blue[900]),
+            ),
           )),
         )
       ],
