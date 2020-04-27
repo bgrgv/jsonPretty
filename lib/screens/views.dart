@@ -37,12 +37,13 @@ class _ViewState extends State<View> {
           child: MaterialButton(
             onPressed: () => (html.window.open(
                 "https://github.com/bgrgv/jsonPretty",
-                "Code")), //flutter Web implementation
+                "Code")), // flutter Web implementation
+                          // use url_launcher to implement for Android/iOS
             child: Text(
               "View source code of jsonPretty",
               style: TextStyle(color: Colors.white, fontSize: 17.0),
             ),
-            color: Colors.blue,
+            color: Colors.red,
           ),
         ),
       ),
@@ -52,8 +53,8 @@ class _ViewState extends State<View> {
         onPressed: () async {
           prettyPrint.length > 0
               ? await Clipboard.setData(ClipboardData(text: prettyPrint))
-              : await Clipboard.setData(
-                  ClipboardData(text: "Not a valid/supported JSON input"));
+              : await Clipboard.setData(ClipboardData(
+                  text: "Not a valid/supported JSON input\n--jsonPrety"));
         },
         child: Icon(Icons.content_copy),
       ),
@@ -74,9 +75,8 @@ class _ViewState extends State<View> {
                   maxLines: 30,
                   controller: inputController,
                   decoration: InputDecoration(
-                      hintMaxLines: 10,
                       hintText:
-                          ("Hey! 😊\n\nThis is a simple Flutter-Web application.\n\nInput your JSON to see results! You can copy your output using the button\non the bottom right corner."),
+                          ("Hey! 😊\n\nThis is a simple Flutter-Web application.\n\nInput your JSON to see results! You can copy your output using the button\non the bottom right corner. \n\n\n\nLove to contribute to this?\nOr wanna learn how to build this?\n\nYes?\n\tTap on the red button!\nNo?\n\t😕"),
                       hintStyle: TextStyle(
                         color: Colors.blue[400],
                         fontSize: 20.0,
