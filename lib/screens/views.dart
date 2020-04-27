@@ -8,10 +8,11 @@ class View extends StatefulWidget {
 
 class _ViewState extends State<View> {
   // Takes in the input text as 'text' and formats the JSON
-  void makePrett(String text) {
+  void makePretty(String text) {
+    //use setState to dynamically update the value of variables that are used to display content
     setState(() {
       prettyPrint = encoder.convert(jsonDecode(text));
-      print(prettyPrint); //Check terminal or console for output
+      // print(prettyPrint); //Check terminal or console for output
     });
   }
 
@@ -38,7 +39,7 @@ class _ViewState extends State<View> {
             controller: inputController,
             decoration: InputDecoration(border: OutlineInputBorder()),
             onChanged: (input) {
-              makePrett(input);
+              makePretty(input);
             },
           )),
         ),
@@ -50,7 +51,11 @@ class _ViewState extends State<View> {
         ),
         Flexible(
           flex: 49,
-          child: SafeArea(child: Container()),
+          child: SafeArea(
+              //Display the value of 'prettyPrint' in a 'Text' widget. The value of 'prettyPrint' will be updated by 'setState' of function 'makePretty'
+              child: Center(
+            child: Text(prettyPrint),
+          )),
         )
       ],
     );
